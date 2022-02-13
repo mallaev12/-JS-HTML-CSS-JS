@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="zebra_dialog.css">
+</head>
+<body>
+    <div class="layout">
+        <div class="product">
+            <div class="product__img">
+                <div class="product__img-item">
+                    <div class="product__img-list">
+                        <img src="img/9.png" alt="" srcset="" class = "product__img-card">
+                        <img src="img/10.png" alt="" srcset="" class = "product__img-card">
+                        <img src="img/11.png" alt="" srcset="" class = "product__img-card">
+                     </div>
+                    <div class="product__img-bot">
+                        <img src="img/12.png" alt="" srcset="" height = "7px">
+                    </div>
+                </div>
+                <div class="product__preview">
+                    <img src="img/3.png" alt="" srcset="" class = "product__preview-item" width =  "340px" height="492px">
+                </div>
+            </div>
+            <div class="product__description">
+                <h2 class="product__title">рубашка medicine</h2>
+                <div class="product__categories">
+                    <a href = "#">Рубашки Medicine</a></li>
+                    <a href = "#">Все модели Medicine</a></li>
+                    <a href = "#">Рубашки</a></li>
+                </div>
+                <div class="product__price">
+                    <div class="product__price-full">
+                        <span class="product__price-old">2 699</span>
+                        <span class="product__price-new">2 499 ₽</span>
+                        <span class="product__price-value">2 227 ₽</span>
+                        <span class="product__price-text">— с промокодом</span>
+                    </div>
+                </div>
+                <div class="product__info">
+                    <div class="product__info-item">
+                        <img src="img/1.png" alt="#"/>
+                        В наличии в магазине  <a href="#">Lamoda </a>
+                    </div>
+                    <div class="product__info-item">
+                        <img src="img/2.png" alt="#"/>
+                        Бесплатная доставка
+                    </div>
+                </div>
+
+                <div class="product_basket">
+                    <span class = "product_basket-minus">-</span>
+                    <div class = "product_basket-count">1</div>
+                    <span class = "product_basket-plus">+</span>
+                </div>
+
+                <div class="product_action">
+                    <button class="custom-btn--blue">Купить</button>
+                    <button class="custom-btn">в избранное</button>
+                </div>
+               <div class = "product__add">
+
+               </div>
+                <div class="product__text">
+                    <p>Рубашка Medicine выполнена из вискозной ткани с клетчатым узором.
+                        Детали: прямой край, отложной воротник; планка и манжеты на
+                        поговицах; кармар на груди.
+                    </p>
+                </div>
+                <div class="product__share">
+                    <span class="product__share-title">поделиться:</span>
+                    <div class="product__share-list">
+                        <a href="#" class = "product__share-item">
+                            <img src="img/5.png" alt="" srcset="" width="7px" height="10px">
+                        </a>
+
+                        <a href="#" class = "product__share-item">
+                            <img src="img/6.png" alt="" srcset="" width="13px" height="11px">
+                        </a>
+                        <a href="#" class = "product__share-item">
+                            <img src="img/7.png" alt="" srcset="" width="5px" height="12px">
+                        </a>
+                        <a href="#" class = "product__share-item">
+                            <img src="img/8.png" alt="" srcset="" width="11px" height="10px">
+                        </a>
+                        <span class = "product__share-more">123</span>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/zebra_dialog.js"></script>
+    <script>
+        let count = $(".product_basket-count").text();
+        $(".product_basket-minus").css("color", "#d9d9d9");
+        
+        $(".product__img-card").mouseover(function() {
+            let src = $(this).attr("src");
+            if(src == "img/9.png"){
+                src = "img/3.png"
+                $(".product__preview-item").attr("src", src);
+            } else {
+                $(".product__preview-item").attr("src", src);
+            }
+        })
+        $(".product_basket-minus").click(function(){
+            if(count == 1){
+                $(".product_basket-count").text(count);
+            }else {
+                count--;
+                $(".product_basket-count").text(count);
+                if(count == 1){
+                    $(".product_basket-minus").css("color", "#d9d9d9");
+                }
+            }   
+        })
+        $(".product_basket-plus").click(function(){
+            count++;
+            $(".product_basket-count").text(count);
+            $(".product_basket-minus").css("color", "#000000");
+        })
+        $(".custom-btn--blue").click(function(){
+            if(count == 1){
+                $.Zebra_Dialog('В корзину добавлен '+count+' товар');
+            } else if (count >= 2 && count < 5 ){
+                $.Zebra_Dialog('В корзину добавленно '+count+' товара');
+            } else {
+                $.Zebra_Dialog('В корзину добавленно '+count+' товаров');
+            }
+            count = 1;
+            $(".product_basket-count").text(count);
+        })
+    </script>
+</body>
+</html>
